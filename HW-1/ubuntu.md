@@ -1,5 +1,5 @@
 1. Произвести минимальную настройку (время, локаль, custom motd)
-   Текущие настройки времи и даты команда timedatectl
+   1.1Текущие настройки времи и даты команда timedatectl
 ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/bea3d8fd-82c6-43b1-9eae-5bc4e6f99928)
 
 
