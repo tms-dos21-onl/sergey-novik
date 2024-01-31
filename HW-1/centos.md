@@ -27,8 +27,8 @@
    - информация о производителе ОЗУ dmidecode
      
 5. Получить информацию о жестком диске  
-   - информацию о всех дисках fdisk -l  
-     ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/6459813a-a6e9-44b9-8612-2f585d4a7a97)  
+   - информацию о всех дисках fdisk -l
+![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/6459813a-a6e9-44b9-8612-2f585d4a7a97)  
 
    - найти все диски ls -l /dev | grep sd  
    - полезные команды: lsblk, df -H  
@@ -36,15 +36,15 @@
 
 
 6. Добавить в виртуальную машину второй сетевой интерфейс (вывести информацию о нем в виртуалках)
-   ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/d182dfd6-6249-4e51-90d8-d66069b5efde)
+![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/d182dfd6-6249-4e51-90d8-d66069b5efde)
     
 7. (**) Узнать полную информацию об использованной и неиспользованной памяти  
    - команда free -h, top
-     ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/c129ec81-4df0-4107-b091-ce730c11d9c9)  
+![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/c129ec81-4df0-4107-b091-ce730c11d9c9)  
 
    - вывести список процессов и отсортировать их ps aux --sort -rss  
    - можно установить аналоги диспетчера задач windows: htop, nmon
-     ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/f314faa3-46c1-406f-8b23-f32bcfbe373d)
+![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/f314faa3-46c1-406f-8b23-f32bcfbe373d)
       
 9. (**) Создать пользователя new_admin_user, Настроить ssh доступ пользователю по ключу на VM, запретить ему авторизацию по паролю  
     - создать пользователя (в этот момент не создается его домашний каталог): useradd new_admin_user  
@@ -61,7 +61,7 @@
       
 10. (**) Вывести список файловых систем, которые поддерживаются ядром
     -  cat /proc/filesystems покажет вам, какие файловые системы может поддерживать ваше работающее ядро прямо сейчас.
-      ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/00a5846e-1720-4edf-8390-c8dea33cff18)  
+![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/00a5846e-1720-4edf-8390-c8dea33cff18)  
 
     -  ls /lib/modules/$(uname -r)/kernel/fs предоставит подсказки относительно того, какие дополнительные файловые системы оно могло бы поддерживать, если вы загрузили соответствующий модуль
       ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/4bace541-1cd9-4456-89c2-90c2be87ab04)
