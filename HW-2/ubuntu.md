@@ -12,13 +12,25 @@
    - монтируем в /mnt/home. В файл /etc/fstab добавляем строчку:
      > /dev/sdb1 /mnt/home ext4 defaults 0 0
    - применяем настройки командой:  
-     > mount -a  
+     > mount -a
+   
    ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/aeb88d91-f891-4bc1-894e-76ec877e9d94)
        
      
-3. Создать нового пользователя penguin с home-директорией /mnt/home/penguin.
+3. Создать нового пользователя penguin с home-директорией /mnt/home/penguin.  
+   - команда `useradd` ключ `-m` создает сразу home-директорию, `-d` - путь.  
+     > useradd penguin -m -d /mnt/home/penguin
+     
+4. Создать новую группу пользователей birds, перенести в нее пользователя penguin.  
+   - создаем группу:  
+     > groupadd birds
+   - добавляем penguin в birds:
+     > usermod -a -G birds penguin
    
-Создать новую группу пользователей birds, перенести в нее пользователя penguin.
+   ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/3b565d1a-7ae4-4da8-ad82-33892a767096)  
+  
+    
+     
 Cоздать директорию /var/wintering и выдать права на нее только группе birds.
 Установить ntpd (или chrony) и разрешить пользователю penguin выполнять команду systemctl restart chronyd (нужны права sudo). Больше узнать о том, что такое NTP и почему он важен можно из следующей статьи.
 (**) Вывод команды iostat -x в последней колонке показывает загрузку дисков в процентах. Откуда утилита это понимает? Достаточно ли вывода команды iostat -x для того, чтобы оценить реальную нагрузку на диски, или нужны дополнительные условия или ключи?
