@@ -7,10 +7,11 @@
    ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/028425f8-193d-4325-b390-b3ab4b4c8d67)  
   
 3. Создать простейший bash-скрипт sysinfo.sh, который собирает данные о:
-- количестве свободной оперативной памяти
-- текущей загрузке процессора
-- текущем IP адресе(ах)
-и выводит их в формате ключ: значение, причем все ключи заменить на русские названия. Например, чтобы вместо «Mem: 1024Mb» выводилось «Память: 1024Мб». Для написания скрипта рекомендуется использовать утилиты awk, grep и sed.
+ - количестве свободной оперативной памяти
+ - текущей загрузке процессора
+ - текущем IP адресе(ах)
+ и выводит их в формате ключ: значение, причем все ключи заменить на русские названия. Например, чтобы вместо «Mem: 1024Mb» выводилось «Память: 1024Мб». Для написания скрипта рекомендуется использовать утилиты awk, grep и 
+ sed.
 
 ```bash
 #!/bin/bash
@@ -28,13 +29,28 @@ echo 'IP адрес: '$lan
 
 ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/3e0309a6-e926-4c2d-b1b2-61049f1a2321)
   
-
-
-
-
 4. (**) Cоздать файл immortalfile, запретить его удаление даже пользователем root и попытаться его удалить из под root, результатом должно быть “Operation not permitted”. Подсказка: CHATTR(1).
+
+```console
+root@ubuntu-tms:/home/novik# ls -l
+total 0
+-rw-r--r-- 1 root root 0 Feb 15 14:01 test-file
+root@ubuntu-tms:/home/novik# lsattr
+--------------e------- ./test-file
+root@ubuntu-tms:/home/novik# chattr +i test-file
+root@ubuntu-tms:/home/novik# ls -l
+total 0
+-rw-r--r-- 1 root root 0 Feb 15 14:01 test-file
+root@ubuntu-tms:/home/novik# lsattr
+----i---------e------- ./test-file
+root@ubuntu-tms:/home/novik# rm test-file
+rm: cannot remove 'test-file': Operation not permitted
+root@ubuntu-tms:/home/novik# sudo rm test-file
+rm: cannot remove 'test-file': Operation not permitted
+root@ubuntu-tms:/home/novik#
+```
    
-5. (***) Выполнить команду и разобраться, что она делает и что сохраняется в file.log
+6. (***) Выполнить команду и разобраться, что она делает и что сохраняется в file.log
 
 env -i bash -x -l -c 'echo hello_there!' > file.log 2>&1
 
