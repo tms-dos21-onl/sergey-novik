@@ -32,22 +32,19 @@ echo 'IP адрес: '$lan
 4. (**) Cоздать файл immortalfile, запретить его удаление даже пользователем root и попытаться его удалить из под root, результатом должно быть “Operation not permitted”. Подсказка: CHATTR(1).
 
 ```console
+root@ubuntu-tms:/home/novik# touch immortalfile
 root@ubuntu-tms:/home/novik# ls -l
 total 0
--rw-r--r-- 1 root root 0 Feb 15 14:01 test-file
+-rw-r--r-- 1 root root 0 Feb 16 14:11 immortalfile
 root@ubuntu-tms:/home/novik# lsattr
---------------e------- ./test-file
-root@ubuntu-tms:/home/novik# chattr +i test-file
-root@ubuntu-tms:/home/novik# ls -l
-total 0
--rw-r--r-- 1 root root 0 Feb 15 14:01 test-file
+--------------e------- ./immortalfile
+root@ubuntu-tms:/home/novik# chattr +i immortalfile
 root@ubuntu-tms:/home/novik# lsattr
-----i---------e------- ./test-file
-root@ubuntu-tms:/home/novik# rm test-file
-rm: cannot remove 'test-file': Operation not permitted
-root@ubuntu-tms:/home/novik# sudo rm test-file
-rm: cannot remove 'test-file': Operation not permitted
+----i---------e------- ./immortalfile
+root@ubuntu-tms:/home/novik# rm immortalfile
+rm: cannot remove 'immortalfile': Operation not permitted
 root@ubuntu-tms:/home/novik#
+
 ```
    
 6. (***) Выполнить команду и разобраться, что она делает и что сохраняется в file.log
