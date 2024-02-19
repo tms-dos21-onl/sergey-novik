@@ -16,6 +16,12 @@
    ```bash
    ps -aux | grep ping  #проверяем после перелогина по ssh
    ```
+   - видим что процесс еще выполняется:  
+   ```console
+   root@ubuntu-tms:/home/novik# ps -aux | grep ping
+   root        1047  0.1  0.0   7720  1316 ?        S    11:50   0:00 ping 8.8.8.8
+   root        1186  0.0  0.1   6480  2228 pts/1    S+   11:51   0:00 grep --color=auto ping
+   ```
    
 6. Убить процесс, запущенный в фоновом режиме.
    
