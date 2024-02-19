@@ -114,6 +114,19 @@
    novik@ubuntu-tms:~$
   ```
 8. (**) Добавить в cron задачу, которая будет каждые 10 минут писать в файл результаты выполнения скрипта из п.7
-9. (***) Сделать п. 5 для Prometheus Node Exporter
+- создадим скрипт для запуска предыдущего скрпта):
+  ```bash
+  #!/bin/bash
+   date >> /home/novik/sysstat.log
+   
+   /bin/bash /home/novik/hw4.7.sh >> /home/novik/sysstat.log
+   
+   echo -e "\n" >> /home/novik/sysstat.log
+  ```
+- в консоли вводим `crontab -e` и добавляем строчку:
+  ```bash
+  */10 * * * * /home/novik/monit.sh
+  ```
+10. (***) Сделать п. 5 для Prometheus Node Exporter
 
 ** и *** не обязательны к выполнению. Задачи на интерес
