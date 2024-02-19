@@ -52,7 +52,7 @@
    Group=root
 
    [Install]
-   WantedBy=multi-user.target   #указывает после чего запускается наш сервис
+   WantedBy=multi-user.target   #уровень запуска
    ```
    - запуск и проверка:
    ```console
