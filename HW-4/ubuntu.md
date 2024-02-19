@@ -23,7 +23,7 @@
    root        1186  0.0  0.1   6480  2228 pts/1    S+   11:51   0:00 grep --color=auto ping
    ```
    
-6. Убить процесс, запущенный в фоновом режиме.
+4. Убить процесс, запущенный в фоновом режиме.
    ```bash
    kill 1047   # id процесса можно получить через ps
    ```
@@ -37,7 +37,7 @@
    root        1188  0.0  0.1   6480  2400 pts/1    S+   11:52   0:00 grep --color=auto ping
    root@ubuntu-tms:/home/novik#
    ```
-8. Написать свой сервис под управлением systemd, добавить его в автозагрузку (можно использовать процесс из п.2).
+5. Написать свой сервис под управлением systemd, добавить его в автозагрузку (можно использовать процесс из п.2).
    - мой сервис будет неприрывно пинговать 8.8.8.8:
    ```console
    touch my-services.sh   #скрипт для выполнения ping 8.8.8.8
@@ -54,11 +54,37 @@
    [Install]
    WantedBy=multi-user.target   #указывает после чего запускается наш сервис
    ```
+   - запуск и проверка:
+   ```console
+   systemctl start my-services    # запуск сервиса
+   systemctl enable my-services   # включение автозагрузки сервиса, если ошибок нет - значит все работает
+   ```
    
-   
-10. Посмотреть логи своего сервиса.
-    
-12. (**) Написать скрипт, который выводит следующую информацию (можно переиспользовать предыдущее дз):  
+6. Посмотреть логи своего сервиса.
+   - посмотреть текущее состояние:
+     
+    ```console  
+    root@ubuntu-tms:/home/novik# systemctl status my-services
+      ● my-services.service
+        Loaded: loaded (/etc/systemd/system/my-services.service; enabled; vendor preset:>
+        Active: active (running) since Mon 2024-02-19 12:32:22 UTC; 22min ago
+      Main PID: 619 (my-services.sh)
+         Tasks: 2 (limit: 2220)
+        Memory: 1.8M
+           CPU: 1.686s
+        CGroup: /system.slice/my-services.service
+                ├─619 /bin/bash /home/novik/my-services.sh
+                └─630 ping 8.8.8.8
+      Feb 19 12:54:45 ubuntu-tms my-services.sh[630]: 64 bytes from 8.8.8.8: icmp_seq=1341 >
+      Feb 19 12:54:46 ubuntu-tms my-services.sh[630]: 64 bytes from 8.8.8.8: icmp_seq=1342   
+    ```
+
+
+   - посмотреть логи сервиса:
+   ```console
+   journalctl -eu my-services.service
+   ```
+7. (**) Написать скрипт, который выводит следующую информацию (можно переиспользовать предыдущее дз):  
 - кол-во процессов запущенных из под текущего пользователя
 - load average за 15 минут
 - кол-во свободной памяти
