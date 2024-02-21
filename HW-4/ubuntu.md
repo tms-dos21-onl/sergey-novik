@@ -85,48 +85,59 @@
    journalctl -eu my-services.service
    ```
 7. (**) Написать скрипт, который выводит следующую информацию (можно переиспользовать предыдущее дз):  
-- кол-во процессов запущенных из под текущего пользователя
-- load average за 15 минут
-- кол-во свободной памяти
-- свободное место в рутовом разделе /
-  ```bash
-   #!/bin/bash
-   
-   sumps=$(ps -U $USER | wc -l)
-   echo 'Количество процессов запущенных от' $USER '=' $sumps
-   
-   la=$(cat /proc/loadavg | awk '{print $3}')
-   echo 'Load Average за последние 15 минут =' $la
-   
-   mem=$(free -m | awk '/Mem/ {print $4}')
-   echo 'Свободная ОЗУ:' $mem'Мб'
-   
-   hdd=$(df -h | awk '/\/$/{print $4}')
-   echo 'Свободное место в рутовом разделе / =' $hdd
-  ```
-- рузультат:
-  ```console
-   novik@ubuntu-tms:~$ ./hw4.7.sh
-   Количество процессов запущенных от novik = 17
-   Load Average за последние 15 минут = 0.00
-   Свободная ОЗУ: 1263Мб
-   Свободное место в рутовом разделе / = 14G
-   novik@ubuntu-tms:~$
-  ```
+   - кол-во процессов запущенных из под текущего пользователя
+   - load average за 15 минут
+   - кол-во свободной памяти
+   - свободное место в рутовом разделе /
+     ```bash
+      #!/bin/bash
+      
+      sumps=$(ps -U $USER | wc -l)
+      echo 'Количество процессов запущенных от' $USER '=' $sumps
+      
+      la=$(cat /proc/loadavg | awk '{print $3}')
+      echo 'Load Average за последние 15 минут =' $la
+      
+      mem=$(free -m | awk '/Mem/ {print $4}')
+      echo 'Свободная ОЗУ:' $mem'Мб'
+      
+      hdd=$(df -h | awk '/\/$/{print $4}')
+      echo 'Свободное место в рутовом разделе / =' $hdd
+     ```
+   - рузультат:
+     ```console
+      novik@ubuntu-tms:~$ ./hw4.7.sh
+      Количество процессов запущенных от novik = 17
+      Load Average за последние 15 минут = 0.00
+      Свободная ОЗУ: 1263Мб
+      Свободное место в рутовом разделе / = 14G
+      novik@ubuntu-tms:~$
+     ```
 8. (**) Добавить в cron задачу, которая будет каждые 10 минут писать в файл результаты выполнения скрипта из п.7
-- создадим скрипт для запуска предыдущего скрпта):
-  ```bash
-  #!/bin/bash
-   date >> /home/novik/sysstat.log
-   
-   /bin/bash /home/novik/hw4.7.sh >> /home/novik/sysstat.log
-   
-   echo -e "\n" >> /home/novik/sysstat.log
-  ```
-- в консоли вводим `crontab -e` и добавляем строчку:
-  ```bash
-  */10 * * * * /home/novik/monit.sh
-  ```
-10. (***) Сделать п. 5 для Prometheus Node Exporter
+   - создадим скрипт для запуска предыдущего скрпта):
+     ```bash
+     #!/bin/bash
+      date >> /home/novik/sysstat.log    #записывае в лог время
+      
+      /bin/bash /home/novik/hw4.7.sh >> /home/novik/sysstat.log 
+      
+      echo -e "\n" >> /home/novik/sysstat.log    #добавляем пустую строку, для удобства
+     ```
+   - в консоли вводим `crontab -e` и добавляем строчку:
+     ```bash
+     */10 * * * * /home/novik/monit.sh
+     ```
+9. (***) Сделать п. 5 для Prometheus Node Exporter
+    - копируем в браузере ссылку, скачиваем в консоли через winget:
+      `wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz`
+    - распаковываем архив `tar xvfz node_exporter-1.7.0.linux-amd64.tar.gz`
+    - копируем содержимое юнита из п.5, меням только путь к исполняемому файлу. Запускаем юнит.
+      <details><summary>Результат</summary>
+      
+        ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/f7804dc8-d3a0-49d4-8e62-87503f3178df)
+
+
+      </details>
+      <br>
 
 ** и *** не обязательны к выполнению. Задачи на интерес
