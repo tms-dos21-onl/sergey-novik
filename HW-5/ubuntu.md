@@ -53,4 +53,41 @@
       ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/070b83a6-19d3-4de6-869c-2599f86a7617)
      
 5. (***) Открыть порт 222/tcp и обеспечить прослушивание порта с помощью netcat, проверить доступность порта 222 с помощью telnet и nmap.
+   - На сервере устанавливаем `netcat`, открываем порт 222, запускаем режим проверки порта сервера `nc -l 222`
+   - Смотрим телнетом с другой машины:
+     ```console
+      root@ubuntu-ansible-srv:/home/novik# telnet 10.0.2.4 222
+      Trying 10.0.2.4...
+      Connected to 10.0.2.4.
+      Escape character is '^]'.
+      
+      ^C^C
+      q
+      ^C^C^C
+      ^[
+      ^Q
+      ^C^C^C
+      
+      
+      Connection closed by foreign host.
+     ```
+   - Устанавливаем nmap и сканируем им другую машину:
+     ```console
+      root@ubuntu-ansible-srv:/home/novik# nmap 10.0.2.4
+      Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-23 15:00 UTC
+      Nmap scan report for 10.0.2.4
+      Host is up (0.0014s latency).
+      Not shown: 997 filtered ports
+      PORT    STATE SERVICE
+      22/tcp  open  ssh
+      23/tcp  open  telnet
+      222/tcp open  rsh-spx
+      MAC Address: 08:00:27:61:EF:EC (Oracle VirtualBox virtual NIC)
+      
+      Nmap done: 1 IP address (1 host up) scanned in 5.16 seconds
+      root@ubuntu-ansible-srv:/home/novik#
+
+     ```
+   
+   
 
