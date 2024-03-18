@@ -13,6 +13,22 @@
 
    ```
 3. Создать Bash скрипт get-date.sh, выводящий текущую дату.
+   ```console
+   novik@ubuntu-tms:~$ nano get-date.sh
+   novik@ubuntu-tms:~$ ls -l
+   -rw-rw-r-- 1 novik novik  19 Mar 18 13:48 get-date.sh
+   novik@ubuntu-tms:~$ chmod +x get-date.sh
+   novik@ubuntu-tms:~$ ls -l
+   -rwxrwxr-x 1 novik novik  19 Mar 18 13:48 get-date.sh
+   novik@ubuntu-tms:~$ ./get-date.sh
+   Mon Mar 18 01:49:56 PM UTC 2024
+   novik@ubuntu-tms:~$ cat get-date.sh
+   #!/bin/bash
+   
+   date
+   novik@ubuntu-tms:~$
+
+   ```
    
 5. Запустить скрипт через ./get-date.sh и bash get-date.sh. Какой вариант не работает? Сделать так, чтобы оба варианта работали.
 6. Создать пользователей alice и bob с домашними директориями и установить /bin/bash в качестве командной оболочки по умолчанию.
