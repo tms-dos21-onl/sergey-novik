@@ -76,7 +76,18 @@
    ``` 
 8. Выйти из сессии от alice и открыть сессию от bob. Вывести содержимое файла /home/alice/secret.txt созданного ранее не прибегая к команде sudo. В случае, если это не работает, объяснить.
    ```console
-   
+   root@ubuntu-tms:/home/novik# su - bob
+   bob@ubuntu-tms:~$ cat /home/alice/secret.txt
+   cat: /home/alice/secret.txt: Permission denied
+   bob@ubuntu-tms:~$ ls -l /home/
+   total 20
+   drwxr-x--- 3 alice    alice    4096 Mar 18 14:25 alice
+   drwxr-x--- 2 backend  backend  4096 Mar  7 12:13 backend
+   drwxr-x--- 2 bob      bob      4096 Mar 18 13:59 bob
+   drwxr-x--- 3 frontend frontend 4096 Mar  7 13:31 frontend
+   drwxr-x--- 5 novik    novik    4096 Mar 18 13:49 novik
+
+   # невозможно, так как отсутствуют права на вышестоящий каталог
    ``` 
 13. Создать файл secret.txt с каким-нибудь секретом в каталоге /tmp при помощи текстового редактора nano.
 14. Вывести права доступа к файлу secret.txt. Поменять права таким образом, чтобы этот файл могли читать только владелец и члены группы, привязанной к файлу.
