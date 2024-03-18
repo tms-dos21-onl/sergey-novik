@@ -75,7 +75,7 @@
 
    ``` 
 8. Выйти из сессии от alice и открыть сессию от bob. Вывести содержимое файла /home/alice/secret.txt созданного ранее не прибегая к команде sudo. В случае, если это не работает, объяснить.
-   ```console
+      ```console
       root@ubuntu-tms:/home/novik# su - bob
       bob@ubuntu-tms:~$ cat /home/alice/secret.txt
       cat: /home/alice/secret.txt: Permission denied
@@ -88,10 +88,10 @@
       drwxr-x--- 5 novik    novik    4096 Mar 18 13:49 novik
    
       # невозможно, так как отсутствуют права на вышестоящий каталог
-   ``` 
+      ``` 
 9. Создать файл secret.txt с каким-нибудь секретом в каталоге /tmp при помощи текстового редактора nano.
 10. Вывести права доступа к файлу secret.txt. Поменять права таким образом, чтобы этот файл могли читать только владелец и члены группы, привязанной к файлу.
-   ```console
+      ```console
       bob@ubuntu-tms:~$ nano /tmp/secret.txt
       bob@ubuntu-tms:~$ ls -l /tmp/
       total 28
@@ -102,9 +102,9 @@
       -rw-rw---- 1 bob  bob     7 Mar 18 14:28 secret.txt
       bob@ubuntu-tms:~$
 
-   ``` 
+      ``` 
 11. Выйти из сессии от bob и открыть сессию от alice. Вывести содержимое файла /tmp/secret.txt созданного ранее не прибегая к команде sudo. В случае, если это не работает, объяснить.
-    ```console
+       ```console
       bob@ubuntu-tms:~$
       logout
       root@ubuntu-tms:/home/novik# su - alice
@@ -112,26 +112,26 @@
       cat: /tmp/secret.txt: Permission denied
       alice@ubuntu-tms:~$
 
-    # неработает, так как alice не состоит в группе bob
+      # неработает, так как alice не состоит в группе bob
 
-    ```
+       ```
 12. Добавить пользователя alice в группу, привязанную к файлу /tmp/secret.txt.
-    ```console
+       ```console
       usermod -aG bob alice
-    ```
+       ```
     
 13. Вывести содержимое файла /tmp/secret.txt.
-    ```console
+       ```console
       root@ubuntu-tms:/home/novik# su - alice
       alice@ubuntu-tms:~$ cat /tmp/secret.txt
       Ку!
       
       alice@ubuntu-tms:~$
 
-    ```
+       ```
     
 14. Скопировать домашнюю директорию пользователя alice в директорию /tmp/alice с помощью rsync.
-    ```console
+       ```console
       root@ubuntu-tms:/home/novik# man rsync
       root@ubuntu-tms:/home/novik# rsync -zvh /home/alice/* /tmp/alice
       secret.txt
@@ -146,9 +146,9 @@
       -rw-r--r-- 1 root root 9 Mar 18 14:58 /tmp/alice
       root@ubuntu-tms:/home/novik#
 
-    ```
+       ```
 15. Скопировать домашнюю директорию пользователя alice в директорию /tmp/alice на другую VM по SSH с помощью rsync. Как альтернатива, можно скопировать любую папку с хоста на VM по SSH.
-    ```console
+       ```console
       root@ubuntu-tms:/home/novik# rsync -avz /home/alice/ novik@192.168.1.254:/tmp/alice
       novik@192.168.1.254's password:
       sending incremental file list
@@ -166,9 +166,9 @@
       sent 2,823 bytes  received 163 bytes  398.13 bytes/sec
       total size is 4,908  speedup is 1.64
 
-    ```
+       ```
 16. Удалить пользователей alice и bob вместе с домашними директориями.
-    ```console
+       ```console
       root@ubuntu-tms:/home/novik# userdel -r alice
       userdel: group alice not removed because it has other members.
       userdel: alice mail spool (/var/mail/alice) not found
@@ -181,12 +181,12 @@
       drwxr-x--- 5 novik    novik    4096 Mar 18 13:49 novik
       root@ubuntu-tms:/home/novik#
 
-    ```
+       ```
 17. С помощью утилиты htop определить какой процесс потребляет больше всего ресурсов в системе.
-    ```console
+       ```console
       запускаем htop, жмем F6 и выбираем сортировку по RAM или CPU.
-    ```
+       ```
 18. Вывести логи сервиса Firewall с помощью journalctl не прибегая к фильтрации с помощью grep.
-    ```console
-
-    ```
+       ```console
+      journalctl -u ufw
+       ```
