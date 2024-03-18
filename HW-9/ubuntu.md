@@ -131,11 +131,62 @@
     ```
     
 14. Скопировать домашнюю директорию пользователя alice в директорию /tmp/alice с помощью rsync.
-    
+    ```console
+      root@ubuntu-tms:/home/novik# man rsync
+      root@ubuntu-tms:/home/novik# rsync -zvh /home/alice/* /tmp/alice
+      secret.txt
+      
+      sent 102 bytes  received 35 bytes  274.00 bytes/sec
+      total size is 9  speedup is 0.07
+      root@ubuntu-tms:/home/novik# ls -l /tmp/
+      total 32
+      -rw-r--r-- 1 root root    9 Mar 18 14:58 alice
+      -rw-rw---- 1 bob  bob     7 Mar 18 14:28 secret.txt
+      root@ubuntu-tms:/home/novik# ls -l /tmp/alice
+      -rw-r--r-- 1 root root 9 Mar 18 14:58 /tmp/alice
+      root@ubuntu-tms:/home/novik#
+
+    ```
 15. Скопировать домашнюю директорию пользователя alice в директорию /tmp/alice на другую VM по SSH с помощью rsync. Как альтернатива, можно скопировать любую папку с хоста на VM по SSH.
-    
+    ```console
+      root@ubuntu-tms:/home/novik# rsync -avz /home/alice/ novik@192.168.1.254:/tmp/alice
+      novik@192.168.1.254's password:
+      sending incremental file list
+      created directory /tmp/alice
+      ./
+      .bash_history
+      .bash_logout
+      .bashrc
+      .profile
+      secret.txt
+      .local/
+      .local/share/
+      .local/share/nano/
+      
+      sent 2,823 bytes  received 163 bytes  398.13 bytes/sec
+      total size is 4,908  speedup is 1.64
+
+    ```
 16. Удалить пользователей alice и bob вместе с домашними директориями.
-    
+    ```console
+      root@ubuntu-tms:/home/novik# userdel -r alice
+      userdel: group alice not removed because it has other members.
+      userdel: alice mail spool (/var/mail/alice) not found
+      root@ubuntu-tms:/home/novik# userdel -r bob
+      userdel: bob mail spool (/var/mail/bob) not found
+      root@ubuntu-tms:/home/novik# ls -l /home/
+      total 12
+      drwxr-x--- 2 backend  backend  4096 Mar  7 12:13 backend
+      drwxr-x--- 3 frontend frontend 4096 Mar  7 13:31 frontend
+      drwxr-x--- 5 novik    novik    4096 Mar 18 13:49 novik
+      root@ubuntu-tms:/home/novik#
+
+    ```
 17. С помощью утилиты htop определить какой процесс потребляет больше всего ресурсов в системе.
-    
+    ```console
+      запускаем htop, жмем F6 и выбираем сортировку по RAM или CPU.
+    ```
 18. Вывести логи сервиса Firewall с помощью journalctl не прибегая к фильтрации с помощью grep.
+    ```console
+
+    ```
