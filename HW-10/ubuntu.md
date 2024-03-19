@@ -27,9 +27,31 @@
 
     ```
 3. Расширить корневую файловую систему за счёт добавленного диска.
-
+    ```console
+    pvdisplay         #посмотрел что на уровне PV
+    pvcreate /dev/sdb #создал новый PV
+    pvdisplay         #чекнул еще раз
+    vgdisplay         #посмотрел что на уровне VG
+    vgextend ubuntu-vg /dev/sdb # расширил существующий VG 'ubuntu-vg' за счет PV '/dev/sdb'
+    lvdisplay         #посмотрел название существующего LV
+    lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv #расширил LV
+    lsblk             # посмотрел
+    df -h             # посмотрел
+    resize2fs /dev/ubuntu-vg/ubuntu-lv # расширил файловую систему
+    df -h             # посмотрел, готово
+    ```
 4. Вывести информацию по новому размеру файловой системы.
+    ```console
+    root@ubuntu-tms-lvm:/home/novik# df -h
+    Filesystem                         Size  Used Avail Use% Mounted on
+    tmpfs                               96M  1.1M   95M   2% /run
+    /dev/mapper/ubuntu--vg-ubuntu--lv  9.0G  4.3G  4.3G  50% /
+    tmpfs                              479M     0  479M   0% /dev/shm
+    tmpfs                              5.0M     0  5.0M   0% /run/lock
+    /dev/sda2                          1.7G  129M  1.5G   8% /boot
+    tmpfs                               96M  4.0K   96M   1% /run/user/1000
 
+    ```
 5. Вывести в консоль текущую рабочую директорию.
 6. Вывести в консоль все файлы из домашней директории.
 7. Построить маршрут до google.com при помощи утилиты traceroute.
