@@ -15,7 +15,17 @@
 
     ```
 2. Вывести в консоль информацию по текущему размеру файловой системы.
+    ```console
+    root@ubuntu-tms-lvm:/home/novik# df -h
+    Filesystem                         Size  Used Avail Use% Mounted on
+    tmpfs                               96M  1.1M   95M   2% /run
+    /dev/mapper/ubuntu--vg-ubuntu--lv  8.1G  4.3G  3.4G  56% /
+    tmpfs                              479M     0  479M   0% /dev/shm
+    tmpfs                              5.0M     0  5.0M   0% /run/lock
+    /dev/sda2                          1.7G  129M  1.5G   8% /boot
+    tmpfs                               96M  4.0K   96M   1% /run/user/1000
 
+    ```
 3. Расширить корневую файловую систему за счёт добавленного диска.
 
 4. Вывести информацию по новому размеру файловой системы.
