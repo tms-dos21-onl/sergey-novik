@@ -96,10 +96,29 @@
     ```
 8. Установить Sonatype Nexus OSS по следующей инструкции, а именно:
 - установку произвести в директорию /opt/nexus.
-
 - запустить приложение от отдельного пользователя nexus.
+  ```console
 
+
+  ```
 - реализовать systemd оболочку для запуска приложения как сервис.
+  ```bash
+    [Unit]
+    Description=nexus service
+    After=network.target
+    
+    [Service]
+    Type=forking
+    LimitNOFILE=65536
+    ExecStart=/opt/nexus/bin/nexus start
+    ExecStop=/opt/nexus/bin/nexus stop
+    User=nexus
+    Restart=on-abort
+    
+    [Install]
+    WantedBy=multi-user.target
+
+  ```
 
 9. Создать в Nexus proxy репозиторий для пакетов ОС и разрешить анонимный доступ.
 
