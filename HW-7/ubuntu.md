@@ -45,7 +45,10 @@ App-Hosting-Options
   
   - запустил установку/сборку приложения `npm install`;
   - запустил `nmp start`, проверил в браузере с этого же хоста localhost:3000;
+  - изменил порт:
+    ```console
+    export PORT=8081
+    ```
 
-
-![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/14410c45-4546-49e2-9961-76cc0226401a)
+    ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/14410c45-4546-49e2-9961-76cc0226401a)
 
