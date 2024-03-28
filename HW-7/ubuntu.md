@@ -4,6 +4,11 @@
 2. Познакомиться с вариантами хостинга этого веб-приложения:
 App-Hosting-Options
 3. Установить веб-приложение (backend + frontend) на Linux VM и настроить запуск через SystemD  
+  - Скачал оба проекта в домашний каталог:
+    ```console
+    git clone https://github.com/bezkoder/django-rest-api.git
+    git clone https://github.com/bezkoder/react-crud-web-api.git
+    ```
 
   - создал каталог для приложений:
     ```console
