@@ -84,5 +84,26 @@ App-Hosting-Options
     [Install]
     WantedBy=multi-user.target
     ```
+ - из под пользователя backend установил:
+   ```console
+   pip install django==3.2.10
+   pip install django-cors-headers djangorestframework
+   ```
+ - запустил и проверил работу службы `backend.service`
+   ```console
+   root@ubuntu-tms:/app# systemctl status backend.service
+   ● backend.service - Unit for starting a backend app
+         Loaded: loaded (/etc/systemd/system/backend.service; enabled; vendor preset: enabled)
+         Active: active (running) since Thu 2024-03-28 13:57:08 UTC; 1s ago
+       Main PID: 8365 (python3)
+          Tasks: 2 (limit: 2212)
+         Memory: 65.1M
+            CPU: 717ms
+         CGroup: /system.slice/backend.service
+                 ├─8365 python3 manage.py runserver localhost:8080
+                 └─8372 /usr/bin/python3 manage.py runserver localhost:8080
     
+    Mar 28 13:57:08 ubuntu-tms systemd[1]: Started Unit for starting a backend app.
+
+   ```
 
