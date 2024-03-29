@@ -4,7 +4,11 @@
    - запускаем скрипт первичной настройки `sudo mysql_secure_installation`;
 2. (**) Настроить Multi-Primary репликацию для MySQL на 2 VM согласно инструкции.
    - установил mysql на втором сервере;
-   - 
+   - создать UUID на обоих серверах `> SELECT UUID();`
+      ```bash
+      ee2d9ef8-eddf-11ee-84ad-08002761efec #server1
+      21092191-ede0-11ee-9360-08002730f799 #server2
+      ```
 3. Создать схему БД clinic и наполнить её данными используя скрипты из https://github.com/tms-dos21-onl/_sandbox/tree/main/lecture18/mysql/initdb.d/data.
 4. Создать бэкап базы данных clinic.
 5. Написать следующие SQL запросы:
