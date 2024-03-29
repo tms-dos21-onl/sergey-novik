@@ -61,7 +61,6 @@ App-Hosting-Options
 
     ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/14410c45-4546-49e2-9961-76cc0226401a)
 
-4. Установить веб-приложение (backend + frontend) на Linux VM и настроить запуск через SystemD
    
   - создал пользователей backend и frontend
   - изменил права:
@@ -121,4 +120,8 @@ App-Hosting-Options
   WantedBy=multi-user.target
   ```
 - проверил, работает!
+
+4. (**) Познакомиться с инструментом для создания образов VM - Packer - на примерах создания образов для Virtualbox & Hyper-V. Попробовать написать свой шаблон для создания образа VM.
+
+   
 
