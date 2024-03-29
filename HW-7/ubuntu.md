@@ -106,4 +106,19 @@ App-Hosting-Options
     Mar 28 13:57:08 ubuntu-tms systemd[1]: Started Unit for starting a backend app.
 
    ```
+- файл SystemD для frontend `nano /etc/systemd/system/frontend.service`:
+  ```bash
+  [Unit]
+  Description=Unit for starting a frontend app via Webpack DevServer
+  
+  [Service]
+  Restart=on-failure
+  WorkingDirectory=/app
+  ExecStart=npm start
+  User=frontend
+  
+  [Install]
+  WantedBy=multi-user.target
+  ```
+- проверил, работает!
 
