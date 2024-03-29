@@ -1,4 +1,7 @@
 1. Установить MySQL на VM.
+ - установка `apt install mysql-server`;
+ - пароль для рута mysql `mysqladmin password -u root -p`;
+ - запускаем скрипт первичной настройки `sudo mysql_secure_installation`
 2. (**) Настроить Multi-Primary репликацию для MySQL на 2 VM согласно инструкции.
 3. Создать схему БД clinic и наполнить её данными используя скрипты из https://github.com/tms-dos21-onl/_sandbox/tree/main/lecture18/mysql/initdb.d/data.
 4. Создать бэкап базы данных clinic.
