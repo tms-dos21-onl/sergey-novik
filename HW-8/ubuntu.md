@@ -16,6 +16,26 @@
     remotes/origin/main
     ```
 4. Вывести последние 3 коммитa с помощью git log.
+    ```comsole
+    novik@w-adm:/mnt/c/Users/s.novik/sergey-novik$ git log -3
+    commit 444df26757ddb007debed402feed7821d0a174dd (HEAD -> main, origin/main, origin/HEAD)
+    Author: madrunner-ops <77771829+madrunner-ops@users.noreply.github.com>
+    Date:   Thu Apr 18 16:29:19 2024 +0300
+    
+        Update ubuntu.md
+    
+    commit ba2623eec16cedc976fe7abc2060e4def087ced6
+    Author: madrunner-ops <77771829+madrunner-ops@users.noreply.github.com>
+    Date:   Thu Apr 18 16:03:57 2024 +0300
+    
+        Update ubuntu.md
+    
+    commit 8a9df4e5c17f69afd01441eaaa35717e6110b7e5
+    Author: madrunner-ops <77771829+madrunner-ops@users.noreply.github.com>
+    Date:   Wed Apr 17 17:10:35 2024 +0300
+    
+        Update ubuntu.md
+    ```
 5. Создать пустой файл README.md и сделать коммит.
 6. Добавить фразу "Hello, DevOps" в README.md файл и сделать коммит.
 7. Сделать реверт последнего коммита. Вывести последние 3 коммитa с помощью git log.
