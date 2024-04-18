@@ -16,7 +16,7 @@
     remotes/origin/main
     ```
 4. Вывести последние 3 коммитa с помощью git log.
-    ```comsole
+    ```console
     novik@w-adm:/mnt/c/Users/s.novik/sergey-novik$ git log -3
     commit 444df26757ddb007debed402feed7821d0a174dd (HEAD -> main, origin/main, origin/HEAD)
     Author: madrunner-ops <77771829+madrunner-ops@users.noreply.github.com>
