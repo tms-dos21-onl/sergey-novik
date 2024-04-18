@@ -1,6 +1,20 @@
 1. Склонировать текущий репозиторий <FIRSTNAME>-<LASTNAME> (например, ivan-ivanov) на локальную машину.
+    ```
+    git clone  https://github.com/tms-dos21-onl/sergey-novik.git  
+    ```
 2. Вывести список всех удаленных репозиториев для локального.
+    ```console
+    novik@w-adm:~/sergey-novik$ git remote -v
+    origin  https://github.com/tms-dos21-onl/sergey-novik.git (fetch)
+    origin  https://github.com/tms-dos21-onl/sergey-novik.git (push)
+    ```
 3. Вывести список всех веток.
+    ```console
+    novik@w-adm:~/sergey-novik$ git branch -a
+    * main
+    remotes/origin/HEAD -> origin/main
+    remotes/origin/main
+    ```
 4. Вывести последние 3 коммитa с помощью git log.
 5. Создать пустой файл README.md и сделать коммит.
 6. Добавить фразу "Hello, DevOps" в README.md файл и сделать коммит.
