@@ -106,19 +106,45 @@
     ```
 - Выполнить апгрейд MariaDB путем подмены версии используемого Docker образа на 11.1.2.
     ```
-    #сначала перенесу базу на смонтированный volume
-    mysql> select @@datadir;
-    +-----------------+
-    | @@datadir       |
-    +-----------------+
-    | /var/lib/mysql/ |
-    +-----------------+
-    1 row in set (0.00 sec)
-
-    mysql> SHUTDOWN;
-    Query OK, 0 rows affected (0.00 sec)
-
-    # P.S. После этого докер умер и удалился, так как был запущен с аргументом --rm
+     #стопаю контейнер и запускаю новый 
+     PS C:\Users\s.novik> docker run -d -v db:/var/lib/mysql --env MARIADB_ROOT_PASSWORD=1234 mariadb:11.1.2
+     PS C:\Users\s.novik> docker exec -it 1cad638ddfa5 /bin/bash    
     ```
 - Проверить, что версия MariaDB поменялась.
+  ```
+  root@1cad638ddfa5:/# mysql -u root -p
+     mysql> SELECT VERSION();
+        +---------------------------------------+
+        | VERSION()                             |
+        +---------------------------------------+
+        | 11.1.2-MariaDB-1:11.1.2+maria~ubu2204 |
+        +---------------------------------------+
+        1 row in set (0.00 sec)
+  ```
 - Проверить, что данные остались.
+    ```
+    mysql> SHOW DATABASES;
+        +--------------------+
+        | Database           |
+        +--------------------+
+        | information_schema |
+        | mysql              |
+        | performance_schema |
+        | sys                |
+        | testdb             |
+        +--------------------+
+        5 rows in set (0.01 sec)
+    
+  mysql> USE testdb;
+        Database changed
+        mysql> SELECT * FROM poets;
+        +---------+------------------------------------------------------+
+        | poet_id | poet_name                                            |
+        +---------+------------------------------------------------------+
+        |       1 | Александр Сергеевич Пушкин                           |
+        |       2 | Михаил Юрьевич Лермонтов                             |
+        |       3 | Сергей Александрович Есенин                          |
+        |       4 | Анна Андреевна Ахматова                              |
+        +---------+------------------------------------------------------+
+        4 rows in set (0.00 sec)
+```
