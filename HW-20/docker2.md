@@ -4,6 +4,9 @@
     ```
 - конфигурационный файл с хоста, который выполняет настройку HTTPS для страницы по умолчанию
 - директорию с сертификатами
+    ```
+    docker run -d --name testssl --rm --mount type=bind,source=/c/novik/conf.d,destination=/etc/nginx/conf.d --mount type=bind,source=/c/novik/ssl,destination=/etc/nginx/ssl,ro -p 1234:443 nginx
+    ```
 2. Запустить 2 Docker контейнера (например, Docker Getting Started и netshoot) с настройками сети по умолчанию и проверить есть ли между ними соединение.
 3. Создать именованный Docker volume, который будет использоваться для хранения данных MariaDB. Установить MariaDB версии 11.0 используя ранее созданный volume. Затем:
 - Запустить интерактивную сессию Bash в запущенном контейнере при помощи docker exec
