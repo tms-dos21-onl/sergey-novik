@@ -8,8 +8,8 @@
     docker run -d --name testssl --rm --mount type=bind,source=/c/novik/conf.d,destination=/etc/nginx/conf.d --mount type=bind,source=/c/novik/ssl,destination=/etc/nginx/ssl,ro -p 1234:443 nginx
     ```
 2. Запустить 2 Docker контейнера (например, Docker Getting Started и netshoot) с настройками сети по умолчанию и проверить есть ли между ними соединение.
-   '''
-   docker run -d --rm --name nginxtt nginx
+   ```
+      docker run -d --rm --name nginxtt nginx
    docker exec -it nginxtt /bin/bash
 
    root@fb68efb6740f:/# apt-get install net-tools
@@ -34,9 +34,7 @@
     64 bytes from 172.17.0.2: icmp_seq=2 ttl=64 time=0.042 ms
 
    #пингуется, тушим первый контейнер. После этого не пингуется, значит по деволту контейнеры в одной сети и между ними разрешено сетевое взаимодействие
-   
-   
-
+   ```
    
 4. Создать именованный Docker volume, который будет использоваться для хранения данных MariaDB. Установить MariaDB версии 11.0 используя ранее созданный volume. Затем:
 - Запустить интерактивную сессию Bash в запущенном контейнере при помощи docker exec
