@@ -44,7 +44,7 @@
     local     db
    
    PS C:\Users\s.novik> docker pull mariadb:11.0
-   PS C:\Users\s.novik> docker run -d --rm -v db:/mnd/base --env MARIADB_ROOT_PASSWORD=1234 mariadb:11.0 
+   PS C:\Users\s.novik> docker run -d -v db:/var/lib/mysql --env MARIADB_ROOT_PASSWORD=1234 mariadb:11.0 
    ```
 - Запустить интерактивную сессию Bash в запущенном контейнере при помощи docker exec
     ```
@@ -105,6 +105,20 @@
     
     ```
 - Выполнить апгрейд MariaDB путем подмены версии используемого Docker образа на 11.1.2.
+    ```
+    #сначала перенесу базу на смонтированный volume
+    mysql> select @@datadir;
+    +-----------------+
+    | @@datadir       |
+    +-----------------+
+    | /var/lib/mysql/ |
+    +-----------------+
+    1 row in set (0.00 sec)
 
+    mysql> SHUTDOWN;
+    Query OK, 0 rows affected (0.00 sec)
+
+    # P.S. После этого докер умер и удалился, так как был запущен с аргументом --rm
+    ```
 - Проверить, что версия MariaDB поменялась.
 - Проверить, что данные остались.
