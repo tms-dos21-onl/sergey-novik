@@ -38,9 +38,16 @@
    
 3. Создать именованный Docker volume, который будет использоваться для хранения данных MariaDB. Установить MariaDB версии 11.0 используя ранее созданный volume. Затем:
    ```
+   PS C:\Users\s.novik> docker volume create db
+   PS C:\Users\s.novik> docker volume ls
+    DRIVER    VOLUME NAME
+    local     db
    
+   PS C:\Users\s.novik> docker pull mariadb:11.0
+   PS C:\Users\s.novik> docker run -d --rm -v db:/mnd/base --env MARIADB_ROOT_PASSWORD=1234 mariadb:11.0 
    ```
 - Запустить интерактивную сессию Bash в запущенном контейнере при помощи docker exec
+    ```
 - Проверить версию MariaDB через SQL запрос.
 - Создать БД, таблицу и запись.
 - Выполнить апгрейд MariaDB путем подмены версии используемого Docker образа на 11.1.2.
