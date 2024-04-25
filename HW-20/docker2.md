@@ -72,8 +72,39 @@
     mysql> USE testdb;
     Database changed
 
+    mysql> CREATE TABLE IF NOT EXISTS poets
+    -> (poet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> poet_name VARCHAR(100) NOT NULL);
+    Query OK, 0 rows affected (0.04 sec)
+    
+    mysql> SHOW TABLES;
+    +------------------+
+    | Tables_in_testdb |
+    +------------------+
+    | poets            |
+    +------------------+
+    1 row in set (0.00 sec)    
+    mysql> INSERT INTO poets (poet_name)
+    -> VALUES('Александр Сергеевич Пушкин'),
+    ->       ('Михаил Юрьевич Лермонтов'),
+    ->       ('Сергей Александрович Есенин'),
+    ->       ('Анна Андреевна Ахматова');
+    Query OK, 4 rows affected (0.00 sec)
+    Records: 4  Duplicates: 0  Warnings: 0
+    
+    mysql> SELECT * FROM poets;
+    +---------+------------------------------------------------------+
+    | poet_id | poet_name                                            |
+    +---------+------------------------------------------------------+
+    |       1 | Александр Сергеевич Пушкин                           |
+    |       2 | Михаил Юрьевич Лермонтов                             |
+    |       3 | Сергей Александрович Есенин                          |
+    |       4 | Анна Андреевна Ахматова                              |
+    +---------+------------------------------------------------------+
+    4 rows in set (0.00 sec)
     
     ```
 - Выполнить апгрейд MariaDB путем подмены версии используемого Docker образа на 11.1.2.
+
 - Проверить, что версия MariaDB поменялась.
 - Проверить, что данные остались.
