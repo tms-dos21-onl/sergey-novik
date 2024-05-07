@@ -96,13 +96,29 @@
     ```
 8. Установить Sonatype Nexus OSS по следующей инструкции, а именно:
 - установку произвести в директорию /opt/nexus.
+  ```console
+  root@tms:/opt# apt-get update
+  root@tms:/opt# apt install openjdk-8-jre-headless
+  root@tms:/opt# cd /opt
+  root@tms:/opt# wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+  root@tms:/opt# tar -zxvf latest-unix.tar.gz
+  
+  ```
 - запустить приложение от отдельного пользователя nexus.
   ```console
+  root@tms:/opt# adduser nexus
+  root@tms:/opt# visudo
+  #добавил nexus ALL=(ALL) NOPASSWD: ALL
 
+  root@tms:/opt# chown -R nexus:nexus /opt/nexus
+  root@tms:/opt# chown -R nexus:nexus /opt/sonatype-work
 
+  root@tms:/opt# nano /opt/nexus/bin/nexus.rc
+  #добавил run_as_user="nexus"
+ 
   ```
-- реализовать systemd оболочку для запуска приложения как сервис.
-  ```bash
+- реализовать systemd оболочку для запуска приложения как сервис `root@tms:/opt# nano /etc/systemd/system/nexus.service`.
+    ```bash
     [Unit]
     Description=nexus service
     After=network.target
@@ -118,6 +134,22 @@
     [Install]
     WantedBy=multi-user.target
 
+  ```
+  ```console  
+  root@tms:/opt# systemctl start nexus
+  root@tms:/opt# systemctl status nexus
+  ● nexus.service - nexus service
+     Loaded: loaded (/etc/systemd/system/nexus.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-05-07 13:37:42 UTC; 6min ago
+   Main PID: 4484 (java)
+      Tasks: 78 (limit: 2271)
+     Memory: 1.6G
+     CGroup: /system.slice/nexus.service
+             └─4484 /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -server -Dinstall4j.jvmDir=/usr/li>
+
+    May 07 13:37:41 tms systemd[1]: Starting nexus service...
+    May 07 13:37:42 tms nexus[4265]: Starting nexus
+    May 07 13:37:42 tms systemd[1]: Started nexus service.
   ```
 
 9. Создать в Nexus proxy репозиторий для пакетов ОС и разрешить анонимный доступ.
