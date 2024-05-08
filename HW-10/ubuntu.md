@@ -155,12 +155,23 @@
 9. Создать в Nexus proxy репозиторий для пакетов ОС и разрешить анонимный доступ.
     ```
     Зашел на сервер по http, порт 8081, в стартовом визарде изменил пароль и разрешил анонимный доступ;
-    
+    Создал прокси репозиторий;
     ```
+    ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/d751f335-9c8d-40d6-b5f8-c23119a34cff)
+
 
 10. Поменять для текущей VM основной репозиторий пакетов на созданный ранее proxy в Nexus.
+    ```
+    # Добавил в файл /etc/apt/sources.list:
+    deb http://192.168.1.77:8081/repository/test-proxy-apt/ focal main restricted universe multiverse
+
+    root@tms:/opt# apt update
+    ```
 
 11. Выполнить установку пакета snap и убедиться, что на proxy репозитории в Nexus появились пакеты.
+    ![image](https://github.com/tms-dos21-onl/sergey-novik/assets/77771829/63538fd5-67d4-41fb-9ad1-0368d44d66e2)
+
+    
 
 12. (**) На основании шагов из предыдущих пунктов создать DEB/RPM пакет для установки Nexus и загрузить его в Nexus.
 
