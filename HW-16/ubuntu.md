@@ -5,7 +5,7 @@
 2. (**) Настроить Multi-Primary репликацию для MySQL на 2 VM согласно инструкции.
       
 3. Создать схему БД clinic и наполнить её данными используя скрипты из https://github.com/tms-dos21-onl/_sandbox/tree/main/lecture18/mysql/initdb.d/data.
-   ```
+   ```console
    mysql> source /home/novik/schema.sql;
    mysql> source /home/novik/data.sql;
    
@@ -23,8 +23,13 @@
    ```
 
 4. Создать бэкап базы данных clinic.
+   ```console
+   root@tms:/home/novik# mysqldump -u root -p clinic > clinic-dump.sql
+   ```
+
 5. Написать следующие SQL запросы:
 - Вывести всех врачей, работающих в терапевтическом отделении.
+
 - Вывести в каких отделениях побывал каждый пациент.
 - Обновить дату приёма для пациента Ивана Иванова на 2022-02-09.
 - Удалить врача Андрея Быкова и все его приёмы.
