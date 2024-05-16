@@ -29,11 +29,42 @@
 
 5. Написать следующие SQL запросы:
 - Вывести всех врачей, работающих в терапевтическом отделении.
-
+   ```console
+   SELECT FirstName, LastName, dep.Name
+   FROM Job job 
+   JOIN Department dep ON job.Department_id = dep.id AND dep.Name = 'Терапевтический' 
+   JOIN Doctor doc ON job.Doctor_id = doc.id;
+   ```
 - Вывести в каких отделениях побывал каждый пациент.
+   ```console
+   SELECT pat.FirstName, pat.LastName, dep.Name AS Department, r.Number AS RoomNumber
+   FROM Appointment a
+   JOIN Patient pat ON a.Patient_id = pat.id
+   JOIN Room r ON a.Room_id = r.id
+   JOIN Department dep ON r.Department_id = dep.id;
+   ```
 - Обновить дату приёма для пациента Ивана Иванова на 2022-02-09.
+   ```console
+   UPDATE Appointment
+   SET Date = '2022-02-09'
+   WHERE Patient_id = (
+   SELECT id
+   FROM Patient
+   WHERE FirstName = 'Иван'
+   AND LastName = 'Иванов'
+   );
+   ```
 - Удалить врача Андрея Быкова и все его приёмы.
+   ```console
+   DELETE FROM Job WHERE Doctor_id IN (SELECT id FROM Doctor WHERE FirstName = 'Андрей' AND LastName = 'Быков');
+   DELETE FROM Appointment WHERE Doctor_id IN (SELECT id FROM Doctor WHERE FirstName = 'Андрей' AND LastName = 'Быков');
+   DELETE FROM Doctor WHERE FirstName = 'Андрей' AND LastName = 'Быков';
+   ```
+
 - Добавить нового врача Фила Ричардса и новую пациентку Василису Васильеву и записать её к Филу Ричардсу на приём на 2022-02-14.
+  ```console
+  
+  ```
 6. Восстановить базу данных clinic из бэкапа и проверить, что данные соответствуют состоянию базы данных до внесенных в предыдущем задании изменений.
 7. Установить MongoDB
 8. Создать БД clinic и наполнить её данными используя скрипты из https://github.com/tms-dos21-onl/_sandbox/tree/main/lecture18/mongo/initdb.d.
