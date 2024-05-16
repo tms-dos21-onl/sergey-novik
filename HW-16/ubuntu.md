@@ -63,7 +63,21 @@
 
 - Добавить нового врача Фила Ричардса и новую пациентку Василису Васильеву и записать её к Филу Ричардсу на приём на 2022-02-14.
   ```console
-  
+   INSERT INTO Doctor (id, FirstName, LastName, BirthDate, Telephone, Email)
+   VALUES (1, 'Фил', 'Ричардс', '1990-05-01', '+37529XXXXXXX', 'fil@clinic.by');
+   
+   
+   INSERT INTO Patient (id, FirstName, LastName, BirthDate, Address, Telephone, Email)
+   VALUES (6, 'Василиса', 'Васильева', '2001-01-01', 'Minsk', '+37533XXXXXXX', 'vasilisa@google.com');
+   
+   INSERT INTO Appointment (id, Patient_id, Doctor_id, Date, Room_id)
+   VALUES (
+   1,
+   (SELECT id FROM Patient WHERE Patient.FirstName = 'Василиса' AND Patient.LastName = 'Васильева'),
+   (SELECT id FROM Doctor WHERE Doctor.FirstName = 'Фил' AND Doctor.LastName = 'Ричардс'),
+   '2022-02-14',
+   '5'
+   );
   ```
 6. Восстановить базу данных clinic из бэкапа и проверить, что данные соответствуют состоянию базы данных до внесенных в предыдущем задании изменений.
 7. Установить MongoDB
