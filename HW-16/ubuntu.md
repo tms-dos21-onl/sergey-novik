@@ -80,6 +80,25 @@
    );
   ```
 6. Восстановить базу данных clinic из бэкапа и проверить, что данные соответствуют состоянию базы данных до внесенных в предыдущем задании изменений.
+ ```console
+   root@tms:/home/novik# mysql -u root -p clinic < clinic-dump.sql
+
+   #проверяем список докторов
+   mysql> USE clinic;
+   mysql> SELECT * FROM Doctor
+       -> ;
+   +----+----------------+--------------------+---------------+-----------------------------+------------+
+   | id | FirstName      | LastName           | Telephone     | Email                       | BirthDate  |
+   +----+----------------+--------------------+---------------+-----------------------------+------------+
+   |  1 | Андрей         | Быков              | +37529XXXXXXX | andrey.bykov@clinic.com     | 1966-06-22 |
+   |  2 | Иван           | Купитман           | +37529XXXXXXX | ivan.kupitman@clinic.com    | 1963-03-13 |
+   |  3 | Борис          | Левин              | +37529XXXXXXX | dmitry.levin@clinic.com     | 1986-01-15 |
+   |  4 | Варвара        | Черноус            | +37529XXXXXXX | varvara.chernous@clinic.com | 1988-04-14 |
+   |  5 | Глеб           | Романенко          | +37529XXXXXXX | gleb.romanenko@clinic.com   | 1984-09-19 |
+   |  6 | Семён          | Лобанов            | +37529XXXXXXX | semen.lobanoff@clinic.com   | 1983-11-22 |
+   +----+----------------+--------------------+---------------+-----------------------------+------------+
+   6 rows in set (0.00 sec)
+ ```
 7. Установить MongoDB
 8. Создать БД clinic и наполнить её данными используя скрипты из https://github.com/tms-dos21-onl/_sandbox/tree/main/lecture18/mongo/initdb.d.
 9. Написать выборочно 3 запроса из задания 5 для MongoDB используя mongosh команды.
