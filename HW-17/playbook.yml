@@ -1,0 +1,4 @@
+- import_playbook: apache.yml
+- import_playbook: mariadb.yml
+- import_playbook: memcached.yml
+- import_playbook: app.yml

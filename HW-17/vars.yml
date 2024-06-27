@@ -1,0 +1,8 @@
+database_name: temp
+database_user: temp
+database_password: temp
+
+enable_cache: true
+
+site_name: simple-lamp
+site_port: 8080

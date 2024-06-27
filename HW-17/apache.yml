@@ -1,0 +1,23 @@
+- name: Install Apache2
+  hosts: webservers
+  vars_files:
+    - vars.yml
+  tasks:
+  - name: Install PHP
+    ansible.builtin.apt:
+      name: php8.1
+      state: latest
+
+  - name: Install Apache2 Server with PHP module
+    ansible.builtin.apt:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+    - apache2
+    - libapache2-mod-php
+
+  - name: Enable displaying PHP errors in Apache server
+    ansible.builtin.replace:
+      path: /etc/php/8.1/apache2/php.ini
+      regexp: ^display_errors = Off$
+      replace: display_errors = On

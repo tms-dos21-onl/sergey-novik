@@ -1,0 +1,16 @@
+- name: Install memcached
+  hosts: webservers
+  vars_files:
+    - vars.yml
+  tasks:
+  - name: Install memcached
+    ansible.builtin.apt:
+      name: memcached
+      state: latest
+
+  # to be able to see logs via `journalctl -u memcached`
+  - name: Enable memcached verbosity
+    ansible.builtin.replace:
+      path: /etc/memcached.conf
+      regexp: "# -v"
+      replace: -v

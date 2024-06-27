@@ -1,0 +1,45 @@
+- name: Install MariaDB
+  hosts: dbservers
+  vars_files:
+    - vars.yml
+  tasks:
+  - name: Install MariaDB Server
+    ansible.builtin.package:
+      name: mariadb-server
+      state: latest
+
+  - name: Install MariaDB Client
+    ansible.builtin.package:
+      name: mariadb-client
+      state: latest
+
+  # needed in Docker
+  #- name: Start MariaDB
+  #  ansible.builtin.command: service mariadb start
+
+  - name: Start MariaDB
+    service:
+      name: mariadb
+      state: started
+
+  - name: Install community.mysql dependencies
+    package:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - python3
+      - python3-pymysql
+
+  - name: Create Application Database
+    community.mysql.mysql_db:
+      name: "{{ database_name }}"
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      state: present
+
+  - name: Create Application DB User
+    community.mysql.mysql_user:
+      name: "{{ database_user }}"
+      password: "{{ database_password }}"
+      priv: "{{ database_name }}.*:ALL"
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      state: present

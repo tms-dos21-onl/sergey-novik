@@ -1,0 +1,10 @@
+Listen {{ site_port }}
+
+<VirtualHost *:{{ site_port }}>
+    ServerName simple-lamp
+    DocumentRoot /var/www/{{ site_name }}
+    DirectoryIndex index.php
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

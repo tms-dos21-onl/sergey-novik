@@ -1,0 +1,53 @@
+- name: Deploy Simple Lamp app
+  hosts: webservers
+  vars_files:
+    - vars.yml
+  tasks:
+  - name: Install PHP dependencies
+    ansible.builtin.apt:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+    - php8.1-curl
+    - php8.1-memcached
+    - php8.1-mysql
+
+  - name: Download app package
+    ansible.builtin.get_url:
+      url: https://github.com/qyjohn/simple-lamp/archive/refs/heads/master.zip
+      dest: /tmp/simple-lamp.zip
+
+  - name: Extract app package
+    ansible.builtin.unarchive:
+      src: /tmp/simple-lamp.zip
+      dest: /tmp
+      remote_src: true
+
+  - name: Copy app package to www
+    ansible.builtin.copy:
+      remote_src: true
+      src: /tmp/simple-lamp-master/
+      dest: "/var/www/{{ site_name }}"
+      owner: www-data
+      group: www-data
+
+  - name: Restore SQL database
+    community.mysql.mysql_db:
+      name: "{{ database_name }}"
+      login_user: "{{ database_user }}"
+      login_password: "{{ database_password }}"
+      target: "/var/www/{{ site_name }}/simple_lamp.sql"
+      state: import
+
+  - name: Setup app config
+    ansible.builtin.template:
+      src: templates/config.php.j2
+      dest: "/var/www/{{ site_name }}/config.php"
+
+  - name: Setup Apache site
+    ansible.builtin.template:
+      src: templates/apache.conf.j2
+      dest: "/etc/apache2/sites-available/{{ site_name }}.conf"
+
+  - name: Enable Apache site
+    ansible.builtin.command: "a2ensite {{ site_name }}"
