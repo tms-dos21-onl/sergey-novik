@@ -1,5 +1,5 @@
 1. Склонировать текущий репозиторий <FIRSTNAME>-<LASTNAME> (например, ivan-ivanov) на локальную машину.
-    ```
+    ```console
     git clone  https://github.com/tms-dos21-onl/sergey-novik.git  
     ```
 2. Вывести список всех удаленных репозиториев для локального.
