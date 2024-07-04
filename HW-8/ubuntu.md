@@ -39,7 +39,7 @@
 #до этой строчки делал задания давно, поэтому дальше будет немного другой вывод комманд;
 
 5. Создать пустой файл README.md и сделать коммит.
-```console
+```code
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git add README.md 
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git commit -m "Create file README.md"
     [main 06a6a51] Create file README.md
@@ -182,7 +182,7 @@
     HW-8/ubuntu.md | 13 +++++++++++++
     2 files changed, 14 insertions(+)
     create mode 100644 HW-8/README.md
-    
+
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\.github\workflows> git push
     Enumerating objects: 9, done.
     Counting objects: 100% (9/9), done.
