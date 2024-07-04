@@ -36,8 +36,21 @@
     
         Update ubuntu.md
     ```
+#до этой строчки делал задания давно, поэтому дальше будет немного другой вывод комманд;
+
 5. Создать пустой файл README.md и сделать коммит.
+```console
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git add README.md 
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git commit -m "Create file README.md"
+    [main 06a6a51] Create file README.md
+    1 file changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 HW-8/README.md
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> 
+```
 6. Добавить фразу "Hello, DevOps" в README.md файл и сделать коммит.
+```console
+    
+```
 7. Сделать реверт последнего коммита. Вывести последние 3 коммитa с помощью git log.
 8. Удалить последние 3 коммита с помощью git reset.
 9. Вернуть коммит, где добавляется пустой файл README.md. Для этого найти ID коммита в git reflog, а затем сделать cherry-pick.
