@@ -1,5 +1,5 @@
 1. Склонировать текущий репозиторий <FIRSTNAME>-<LASTNAME> (например, ivan-ivanov) на локальную машину.
-    ```console
+    ```
     git clone  https://github.com/tms-dos21-onl/sergey-novik.git  
     ```
 2. Вывести список всех удаленных репозиториев для локального.
@@ -39,7 +39,7 @@
 #до этой строчки делал задания давно, поэтому дальше будет немного другой вывод комманд;
 
 5. Создать пустой файл README.md и сделать коммит.
-```ps
+```PS
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git add README.md 
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git commit -m "Create file README.md"
     [main 06a6a51] Create file README.md
@@ -48,7 +48,7 @@
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> 
 ```
 6. Добавить фразу "Hello, DevOps" в README.md файл и сделать коммит.
-```console
+```ps
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git add -A
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik\HW-8> git commit -m "Add text to README.nd"
     [main 4035c8b] Add text to README.nd
