@@ -5,7 +5,7 @@
 4. Zabbix
 5. Git
 
-## Инструметы Devops с которыми я познакомиться:
+## Инструметы Devops с которыми я хочу познакомиться:
 1. AWS Cloud
 2. Terraform
 3. Jenkins
