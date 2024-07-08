@@ -196,10 +196,61 @@
 
 ```
 13. Создать из ветки main ветку develop. Переключиться на неё и создать README.md в корне репозитория. Написать в этом файле какие инструменты DevOps вам знакомы и с какими вы бы хотели познакомиться больше всего (2-3 пункта). Сделать коммит.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik\.github\workflows> git checkout -b develop
+    Switched to a new branch 'develop'
+
+
+```
 
 > ⚠️ Для выполнения задания использовать Markdown, а именно заголовок и списки
 
 14. Создать из ветки main ветку support и создать там файл LICENSE в корне репозитория с содержимым https://www.apache.org/licenses/LICENSE-2.0.txt. Сделать коммит. Вывести последние 3 коммитa.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git branch
+    * develop
+    homework-branch
+    main
+    
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git checkout main      
+    M       HW-8/ubuntu.md
+    Switched to branch 'main'
+    Your branch is up to date with 'origin/main'.
+    
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git checkout -b support
+    Switched to a new branch 'support'
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> curl -L -o LICENSE https://www.apache.org/licenses/LICENSE-2.0.txt
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                    Dload  Upload   Total   Spent    Left  Speed
+    100 11358  100 11358    0     0  54711      0 --:--:-- --:--:-- --:--:-- 55950
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git add -A
+    warning: in the working copy of 'LICENSE', LF will be replaced by CRLF the next time Git touches it
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git commit -m 'добавил файл LICENSE в корне'  
+    [support 21a3ec1] ╨┤╨╛╨▒╨░╨▓╨╕╨╗ ╤Д╨░╨╣╨╗ LICENSE ╨▓ ╨║╨╛╤А╨╜╨╡
+    2 files changed, 208 insertions(+)
+    create mode 100644 LICENSE
+    
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git log -3
+    commit 21a3ec1f127bc0acf39a6e59139fc78db149e9ae (HEAD -> support)
+    Author: Sergey Novik
+    Date:   Mon Jul 8 18:25:56 2024 +0300
+
+        добавил файл LICENSE в корне
+
+    commit 66f7d95b1818a6480919e359ae27a206dec86175 (origin/main, origin/HEAD, main)
+    Author: Sergey Novik
+    Date:   Thu Jul 4 20:55:04 2024 +0300
+
+        Update HW-8
+
+    commit c7eac8ffa59eedfcc02d8c6a2e5d133af6ba861e
+    Author: Sergey Novik
+    Date:   Thu Jul 4 20:51:43 2024 +0300
+
+```
 15. Переключиться обратно на ветку main и создать там файл LICENSE в корне репозитория с содержимым https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt. Сделать коммит. Вывести последние 3 коммитa.
 16. Сделать merge ветки support в ветку main и решить конфликты путем выбора содержимого любой одной лицензии.
 17. Переключиться на ветку develop и сделать rebase относительно ветки main.
