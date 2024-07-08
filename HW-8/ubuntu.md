@@ -196,6 +196,12 @@
 
 ```
 13. Создать из ветки main ветку develop. Переключиться на неё и создать README.md в корне репозитория. Написать в этом файле какие инструменты DevOps вам знакомы и с какими вы бы хотели познакомиться больше всего (2-3 пункта). Сделать коммит.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik\.github\workflows> git checkout -b develop
+    Switched to a new branch 'develop'
+
+
+```
 
 > ⚠️ Для выполнения задания использовать Markdown, а именно заголовок и списки
 
