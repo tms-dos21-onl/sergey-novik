@@ -42,5 +42,25 @@
                 └─1070 "nginx: worker process"
     ```
 4. Создать Firewall правило для подключения к этой VM со своей локальной машины по порту 80. Проверить, что доступ работает.
-
     
+
+    ```console
+    sergeinowik@instance-hw-gcp:~$ systemctl status sshd
+    ● ssh.service - OpenBSD Secure Shell server
+        Loaded: loaded (/lib/systemd/system/ssh.service; enabled; preset: enabled)
+        Active: active (running) since Mon 2024-07-22 16:22:11 UTC; 2min 0s ago
+        Docs: man:sshd(8)
+                man:sshd_config(5)
+        Process: 2952 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+    Main PID: 2953 (sshd)
+        Tasks: 1 (limit: 2344)
+        Memory: 4.8M
+            CPU: 121ms
+        CGroup: /system.slice/ssh.service
+                └─2953 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+    Jul 22 16:22:11 instance-hw-gcp systemd[1]: Starting ssh.service - OpenBSD Secure Shell server...
+    Jul 22 16:22:11 instance-hw-gcp sshd[2953]: Server listening on 0.0.0.0 port 80.
+    Jul 22 16:22:11 instance-hw-gcp sshd[2953]: Server listening on :: port 80.
+    Jul 22 16:22:11 instance-hw-gcp systemd[1]: Started ssh.service - OpenBSD Secure Shell server.
+    ```
