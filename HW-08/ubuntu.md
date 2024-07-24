@@ -232,7 +232,7 @@
     [support 21a3ec1] ╨┤╨╛╨▒╨░╨▓╨╕╨╗ ╤Д╨░╨╣╨╗ LICENSE ╨▓ ╨║╨╛╤А╨╜╨╡
     2 files changed, 208 insertions(+)
     create mode 100644 LICENSE
-    
+
     PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git log -3
     commit 21a3ec1f127bc0acf39a6e59139fc78db149e9ae (HEAD -> support)
     Author: Sergey Novik
@@ -252,8 +252,123 @@
 
 ```
 15. Переключиться обратно на ветку main и создать там файл LICENSE в корне репозитория с содержимым https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt. Сделать коммит. Вывести последние 3 коммитa.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git checkout main
+    Switched to branch 'main'
+    Your branch is up to date with 'origin/main'.
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> curl -L -o LICENSE https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                    Dload  Upload   Total   Spent    Left  Speed
+    100  303k    0  303k    0     0   474k      0 --:--:-- --:--:-- --:--:--  476k
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git add -A
+    warning: in the working copy of 'LICENSE', LF will be replaced by CRLF the next time Git touches it
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git commit -m 'add file LICENSE in branch main'
+    [main e985cdd] add file LICENSE in branch main
+    1 file changed, 2493 insertions(+)
+    create mode 100644 LICENSE
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git log -3
+    commit e985cdd59da71cb6b8a30acfefcc924fb6adf63a (HEAD -> main)
+    Author: Sergey Novik 
+    Date:   Mon Jul 8 18:31:26 2024 +0300
+
+        add file LICENSE in branch main
+
+    commit 66f7d95b1818a6480919e359ae27a206dec86175 (origin/main, origin/HEAD)
+    Author: Sergey Novik 
+    Date:   Thu Jul 4 20:55:04 2024 +0300
+
+        Update HW-8
+
+    commit c7eac8ffa59eedfcc02d8c6a2e5d133af6ba861e
+    Author: Sergey Novik 
+    Date:   Thu Jul 4 20:51:43 2024 +0300
+```
 16. Сделать merge ветки support в ветку main и решить конфликты путем выбора содержимого любой одной лицензии.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git checkout main
+    Already on 'main'
+    Your branch is ahead of 'origin/main' by 1 commit.
+    (use "git push" to publish your local commits)
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git branch       
+    develop
+    homework-branch
+    * main
+    support
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git merge support
+    Auto-merging LICENSE
+    CONFLICT (add/add): Merge conflict in LICENSE
+    Automatic merge failed; fix conflicts and then commit the result.
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git checkout --ours LICENSE
+    Updated 1 path from the index
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git merge support
+    error: Merging is not possible because you have unmerged files.
+    hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+    hint: as appropriate to mark resolution and make a commit.
+    fatal: Exiting because of an unresolved conflict.
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git add -A       
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git merge support
+    fatal: You have not concluded your merge (MERGE_HEAD exists).
+    Please, commit your changes before you merge.
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git commit -m 'update file LICENSE in branch main'
+    [main 32f0947] update file LICENSE in branch main
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git merge support
+    Already up to date.
+```
 17. Переключиться на ветку develop и сделать rebase относительно ветки main.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git checkout develop
+    Switched to branch 'develop'
+
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git rebase main
+    Successfully rebased and updated refs/heads/develop.
+
+```
 18. Вывести историю последних 10 коммитов в виде графа с помощью команды git log -10 --oneline --graph.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git log -10 --oneline --graph
+    * 1a12ed7 (HEAD -> develop) добавил файл README.md в корне
+    *   32f0947 (main) update file LICENSE in branch main
+    |\  
+    | * 9c9a028 (support) update file HW-8\ubuntu.md
+    | * 21a3ec1 добавил файл LICENSE в корне
+    * | e985cdd add file LICENSE in branch main
+    |/  
+    * 66f7d95 (origin/main, origin/HEAD) Update HW-8
+    * c7eac8f Update HW-8
+    * 812a9c6 Update ubuntu.md
+    * 19a3991 Update ubuntu.md
+    * a32478e Update HW-8
+```
 19. Запушить ветку develop. В истории коммитов должен быть мерж support -> main.
+```ps
+    PS C:\Users\s.novik\Documents\GitHub\sergey-novik> git push origin develop
+    Enumerating objects: 64, done.
+    Counting objects: 100% (64/64), done.
+    Delta compression using up to 4 threads
+    Compressing objects: 100% (56/56), done.
+    Writing objects: 100% (61/61), 61.42 KiB | 2.12 MiB/s, done.
+    Total 61 (delta 24), reused 0 (delta 0), pack-reused 0 (from 0)
+    remote: Resolving deltas: 100% (24/24), completed with 1 local object.
+    remote: 
+    remote: Create a pull request for 'develop' on GitHub by visiting:
+    remote:      https://github.com/tms-dos21-onl/sergey-novik/pull/new/develop
+    remote:
+    To https://github.com/tms-dos21-onl/sergey-novik.git
+    * [new branch]      develop -> develop
+```
+
 20. Зайти в свой репозиторий на GitHub и создать Pull Request из ветки develop в ветку main.
+```
+    Сделал.
+```
